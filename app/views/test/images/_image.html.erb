@@ -1,0 +1,6 @@
+<div class="image-entry">
+  <h3><%= image.title %></h3>
+  <% if image.file.attached? %>
+    <%= image_tag image.file, width: 300 %>
+  <% end %>
+</div>
