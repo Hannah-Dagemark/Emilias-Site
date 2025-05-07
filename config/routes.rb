@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :test do
+    resources :images
+    get "images/index"
+    get "images/new"
+    get "images/create"
+    get "images/show"
+  end
   resources :notes
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

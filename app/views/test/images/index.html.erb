@@ -1,0 +1,20 @@
+<h1>Image Upload (Test)</h1>
+
+<%= form_with model: @image, url: test_images_path, data: { turbo_stream: true } do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title %><br>
+
+  <%= form.label :file %>
+  <%= form.file_field :file %><br>
+
+  <%= form.submit "Upload" %>
+<% end %>
+
+<hr>
+
+<h2>Uploaded Images</h2>
+<div id="images">
+  <%= turbo_frame_tag "images" do %>
+    <%= render @images %>
+  <% end %>
+</div>
