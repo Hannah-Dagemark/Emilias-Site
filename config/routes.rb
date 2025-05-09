@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
+  resources :users, only: [ :new, :create, :edit, :update, :destroy ]
+
+  resource :sessions, only: [ :new, :create, :destroy ]
+
   namespace :test do
-    resources :images
-    get "images/index"
-    get "images/new"
-    get "images/create"
-    get "images/show"
+    resources :images, only: [ :index, :create ]
   end
-  resources :notes
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "images#index"
 end
