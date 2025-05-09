@@ -1,23 +1,21 @@
 require "test_helper"
+include ActiveJob::TestHelper
 
 class Test::ImagesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get test_images_index_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get test_images_new_url
+    get test_images_path
     assert_response :success
   end
 
   test "should get create" do
-    get test_images_create_url
-    assert_response :success
+    file = fixture_file_upload("test_image.jpg", "image/jpeg")
+    post test_images_path, params: { image: { file: file, title: "test" } }
+    assert_redirected_to test_images_path
   end
 
-  test "should get show" do
-    get test_images_show_url
-    assert_response :success
+  teardown do
+    perform_enqueued_jobs do
+      ActiveStorage::Blob.all.each(&:purge_later)
+    end
   end
 end
