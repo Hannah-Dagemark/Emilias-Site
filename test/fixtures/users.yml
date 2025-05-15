@@ -5,3 +5,9 @@ one:
   status: test
   email: test@email.com
   password_digest: <%= BCrypt::Password.create('testpassword') %>
+
+two:
+  name: testuser2
+  status: dead
+  email: tester2@email.com
+  password_digest: <%= BCrypt::Password.create('tpass2') %>
